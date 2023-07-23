@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie cast</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Movie Cast</h1>
+        <input type="text" class="input" placeholder="Enter movie">
+        <button class="btn">Add new cast</button>
+        <ul class="list">
+
+        </ul>
+        <button class="show">Show cast</button>
+        <ol class="finalist"></ol>
+    </div>
+    <script>
+
+        class Stack {
+            constructor() {
+                this.item = [];
+            }
+            push(ele) {
+                return this.item.push(ele)
+            }
+            pop() {
+                return this.item.shift()
+            }
+            top() {
+                return this.item[this.item.length - 1];
+            }
+
+            isEmpty() {
+                return this.item.length == 0;
+            }
+
+        }
+
+        let mystack = new Stack();
+        let btn = document.querySelector(".btn")
+        let input = document.querySelector(".input")
+        let list = document.querySelector(".list")
+        let show = document.querySelector(".show")
+        let final = document.querySelector(".finalist")
+        // let stack = []
+        input.addEventListener("change", (event) => {
+            mystack.push(event.target.value)
+            event.target.value = ""
+        })
+        console.log(mystack)
+        let arr = [];
+        show.addEventListener("click",()=>{
+            while(!(mystack.isEmpty())){
+                let li = document.createElement("li");
+                li.innerText = mystack.pop();
+                arr.push(li)
+            }
+            arr.reverse()
+            for(let each of arr){
+                final.append(each)
+            }           
+            
+            
+        })
+
+
+
+    </script>
+</body>
+
+</html>
